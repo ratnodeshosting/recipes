@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Smoothie Famous Recipes">
+    <title>Strawberry Banana Smoothie Recipe</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Strawberry Banana Smoothie Recipe</h1>
+
+        <form id="servingsForm">
+            <label for="servings">Number of Servings:</label>
+            <input type="number" id="servings" name="servings" min="1" value="1">
+            <input type="submit" value="Update Recipe">
+        </form>
+        
+        <h2>Ingredients for <span id="servingCount">1</span> Serving:</h2>
+        <ul id="ingredientsList">
+            <li><span id="strawberries">1</span> cup of frozen strawberries</li>
+            <li><span id="bananas">1</span> cup of frozen sliced bananas</li>
+            <li><span id="yogurt">Half of a</span> cup of plain or vanilla yogurt</li>
+            <li><span id="milk">Half of a</span> cup of milk (dairy or plant-based)</li>
+            <li>Sugar to taste (start with 1-2 tablespoons and adjust to your preference)</li>
+        </ul>
+
+        <h2>Instructions:</h2>
+        <ol>
+            <li>Take the desired amount of frozen sliced bananas from the resealable bag.</li>
+            <li>Place the frozen strawberries and frozen sliced bananas into a blender.</li>
+            <li>Add the yogurt, milk, and sugar to the blender.</li>
+            <li>Blend all the ingredients until smooth and creamy, scraping down the sides of the blender if necessary.</li>
+            <li>Taste the smoothie and adjust sweetness by adding more sugar if desired.</li>
+            <li>Blend again briefly to ensure the sugar is fully incorporated.</li>
+            <li>Pour the smoothie into glasses and serve immediately.</li>
+        </ol>
+
+        <p>Using sugar as a sweetener allows you to adjust the sweetness level to your preference. Just start with a small amount and add more as needed. Enjoy your delicious Strawberry Banana Smoothie with sugar as a sweetener!</p>
+    </div>
+
+    <script>
+        document.getElementById('servingsForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            updateRecipe();
+        });
+
+        function updateRecipe() {
+            var servings = parseInt(document.getElementById('servings').value);
+            var servingCount = document.getElementById('servingCount');
+            servingCount.textContent = servings;
+
+            // Update strawberries and bananas
+            var strawberriesPerServing = 1;
+            var bananasPerServing = 1;
+            var totalStrawberries = servings * strawberriesPerServing;
+            var totalBananas = servings * bananasPerServing;
+
+            document.getElementById('strawberries').textContent = totalStrawberries;
+            document.getElementById('bananas').textContent = totalBananas;
+
+            // Update yogurt and milk
+            var yogurtPerServing = 0.5;
+            var milkPerServing = 0.5;
+            var totalYogurt = servings * yogurtPerServing;
+            var totalMilk = servings * milkPerServing;
+
+            document.getElementById('yogurt').textContent = totalYogurt == 0.5 ? "Half of a" : totalYogurt + " cups";
+            document.getElementById('milk').textContent = totalMilk == 0.5 ? "Half of a" : totalMilk + " cups";
+        }
+
+        // Initial call to update recipe for default serving count
+        updateRecipe();
+    </script>
+</body>
+</html>
